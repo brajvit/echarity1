@@ -184,6 +184,7 @@ class ProductDetailView(DetailView):
     model = Product
     def product_detail_view_func(request, id):
         product_instance =  get_object_or_404(Product, id=id)
+        post = Product.objects.filter(date_created__lte=timezone.now()).order_by('-docfile')[:8]
         try:
             product_instance = Product.object.get(id=id)
         except Product.DoesNotExist:

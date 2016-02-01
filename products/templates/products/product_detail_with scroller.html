@@ -1,0 +1,141 @@
+{% extends "base.html"%}       
+{% load i18n %} 
+{% block content %}
+
+{% load staticfiles %}
+<head>
+	<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald"/>
+    <script src="{% static 'js/jquery.elevatezoom.js' %}"></script>
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+</head>
+<div class="container-fluid" style="color:grey; background-color: GhostWhite; height:auto"><br>
+<br>
+<div class="container-fluid">
+<div class="row">
+      <div class='col-md-7'>   
+             {% if object %}
+             <div class="container-fluid" style="height:auto; width: auto; color:grey; background-color: GhostWhite">
+	              <div class="col-sm-10">  				                      
+                              <h3 style="color:grey;"><lable>{{ object.title}}</lable></h3>                                                          
+		               </div>
+                       	
+                       <div class="col-xs-12">                       
+                          <img src="{{ object.docfile.url }}"  style="height:45%; width:98%; border:1px;" class="img-responsive"  alt="{{ object.docfile.name }}"/>		<hr/>                              
+		               </div>
+             </div>
+                       <div class="col-sm-11">
+                         <h4 style="color:grey;"><lable>{{ object.description}}</lable></h4>
+                       </div>
+             {% endif %}
+        </div>    	
+    <!-- Product Sidebar --> 
+   <div class='col-md-5'>   
+             {% if object %}
+             <br><br>                
+	              <div class="col-sm-11">  	
+					  <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">			             			 	                   
+			 	               <h4 style="color:grey;"><lable style="color:#434343">Post On  :</lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ object.date_created|date:"d M Y" }}</h4>       
+                                <h4 style="color:grey;"><lable style="color:#434343">Expire On:</lable>  &nbsp;&nbsp;&nbsp;  {{object.expire_date|date:"d M Y"}}</h4>      
+                                <h4 style="color:grey;"><lable style="color:#434343">Remains: </lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{ object.quantity }}</h4>    
+                                <h4 style="color:grey;"><lable style="color:#434343">Location:</lable>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{ object.address }}</h4>                                             
+		          </div>                     
+                     </div>                    
+                    <div class="row">						
+					     <div class='col-md-3'>   	
+                            <br>
+                            <img id="img1" src="{% static 'assets/img/find_user.png' %}" class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>		                                  		            
+                         </div>	
+                         <div class='col-md-7' style="padding-top:10px">   	
+                                 <br>          
+                             <a href="/products/enquiry/{{ object.user}}/"style="color:#428BCA"> <div class='col-sm-11'><h3 style="color:grey;">{{ object.user}}<br/>
+                             </div></a>                
+		            
+                          </div>
+                   </div>
+  
+  
+  
+                  <div class="col-sm-11">
+					   <br>
+                         <a href="/products/enquiry/{{ object.user}}/" style="color:#428BCA"> <input type="submit" class='btn btn-primary btn-block'  value={% trans "Excahnge/Donate" %}&raquo;/></a>
+                  </div>
+                  
+                  
+                  <div class="col-sm-11">
+					   <br>
+					 <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">
+					   <h4 style="color:grey;"><lable>Share on Social Media </lable></h4>
+					    <a href="//facebook.com"><img src="{% static 'assets/img/facebook.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//twitter.com"><img src="{% static 'assets/img/Twitter.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//in.linkedin.com"><img src="{% static 'assets/img/linkedin.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//plus.google.com"><img src="{% static 'assets/img/google.jpg' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					   <br><br>
+                     </div>
+                  <br>
+                </div>
+                  
+         <div class="col-sm-11">					   				 
+		   <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:auto; width:100%; "><br>
+   <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox" style="width: 100%;">
+				  
+                      {% if object %}
+                     <div class="item ">
+					  <div class="row">	
+						  <div class='col-md-4'>    
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                           <div class='col-md-4'>   
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                           <div class='col-md-4'>   
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                      </div> 
+                    </div>
+
+                   <div class="item active">
+                     <div class="row">	
+						  <div class='col-md-4'>    
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                           <div class='col-md-4'>   
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                           <div class='col-md-4'>   
+                       <div class="img" style="height: 90px; width:100%">
+                          <img id="img1"src="{{ object.docfile.url }}"  class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                       </div></div>
+                      </div>
+                  </div>
+                    {% else %}
+                  <div class="item active ">
+                    <div class="img" style="height: 90px; width:100%">
+                      <img id="img1" src="{% static 'assets/img/find_user.png' %}" class="img-inline-responsive" width="100%" height="90px" alt="your selected item"/>
+                    </div>
+                 </div>
+                {% endif %}
+          </div>
+       </div>
+					   					   
+                  <br>
+      </div>
+     </div>
+                  
+             {% endif %}
+        </div>        
+</div>
+</div>
+</div>
+<script>	
+     $("#vin").elevateZoom({scrollZoom : true});
+    </script>
+{% endblock %}

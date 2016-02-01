@@ -1,0 +1,100 @@
+{% extends "base.html"%}       
+{% load i18n %} 
+{% block content %}
+
+{% load staticfiles %}
+
+
+<head>
+	<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald"/>
+    <script src="{% static 'js/jquery.elevatezoom.js' %}"></script>
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+</head>
+<div class="container-fluid" style="color:grey; background-color: GhostWhite; height:auto"><br>
+<br>
+<div class="container-fluid">
+<div class="row">
+      <div class='col-md-7'>   
+             
+             {% if event.snap %}
+	              <div class="col-sm-10">                      
+                              <h3 style="color:grey;"><lable>{{  event.eventtype }}</lable></h3>                                                          
+		               </div>
+                       	
+                       <div class="col-xs-12">                       
+                          <img src="{{ event.snap.url }}"  style="height:45%; width:90%; border:1px;" class="img-responsive"  alt="{{ post.docfile.name }}"/>		<hr/>                              
+		               </div>
+  
+                       <div class="col-sm-11">
+                         <h4 style="color:grey;"><lable>{{ event.description }}</lable></h4>
+                       </div>
+             {% endif %}
+        </div>    
+	
+    <!-- Product Sidebar --> 
+   <div class='col-md-5'>   
+             {% if event %}
+             <br><br>
+                 
+	              <div class="col-sm-11">  	
+					  <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">			             			 	                   
+			 	               <h4 style="color:grey;"><lable style="color:#434343">Post On  :</lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ event.date_event|date:"d M Y" }}</h4>       
+      
+                                <h4 style="color:grey;"><lable style="color:#434343">Remains: </lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{  event.duration }}</h4>    
+                                <h4 style="color:grey;"><lable style="color:#434343">Location:</lable>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{ document.address}}</h4>                                             
+		          </div>
+                     
+                     </div>
+                    
+                    <div class="row">
+						
+					     <div class='col-md-3'>   	
+                            <br><br>
+                            <img src="{{ event.snap.url }}"  class="img-circle"  alt="{{ event.docfile.name }}"/>	
+	                                   
+		            
+                         </div>	
+                         <div class='col-md-7' style="padding-top:10px">   	
+                                 <br> <br>           
+                             <a href="/products/enquiry/{{ event.user}}/"style="color:#428BCA"> <div class='col-sm-11'><h3 style="color:grey;">{{ event.user}}<br/>
+                             <hr/></div></a>                
+		            
+                          </div>
+                   </div>
+  
+  
+  
+                  <div class="col-sm-10">
+					   <br><br>
+                         <a href="/products/enquiry/{{ event.user}}/" style="color:#428BCA"> <input type="submit" class="btn btn-info btn-lg"  value={% trans "Excahnge/Donate" %}&raquo;/></a>
+                  </div>
+                  
+                  
+                  <div class="col-sm-11">
+					   <br><br>
+					   <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">
+					   <h4 style="color:grey;"><lable>Share on Social Media </lable></h4>
+					    <a href="//twitter.com"><span class="fa fa-twitter fa-3x" style="color:#5db1ff"></span> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//facebook.com"><span class="fa fa-facebook fa-3x" style="color:#5db1ff"></span> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//plus.google.com"><span class="fa fa-google-plus fa-3x" style="color:#5db1ff"></span> </a>
+					   <br><br>
+                  </div><br></div>
+                  
+             {% endif %}
+        </div> 
+   
+   
+       
+
+     
+
+
+        
+</div>
+</div>
+</div>
+<script>	
+     $("#vin").elevateZoom({scrollZoom : true});
+    </script>
+{% endblock %}

@@ -1,84 +1,101 @@
 {% extends "base.html"%}       
 {% load i18n %} 
-{% block content %}
+
 
 {% load staticfiles %}
-
-
 <head>
+	<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald"/>
     <script src="{% static 'js/jquery.elevatezoom.js' %}"></script>
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
 </head>
-<div class="container-fluid" style="color:grey; background-color: GhostWhite "><br>
+{% block content %}
+<body>
+<div class="container-fluid" style="color:grey; background-color: GhostWhite; height:auto"><br>
 <br>
-<div class="container">
+<div class="container-fluid">
 <div class="row">
-    <div class='col-md-4'>   
- 
-	 {% if object %}
-                       		<div class="col-xs-12">
-                        
-                              
-                               <img id="vin" src="{{ object.docfile.url }}"   style="width:330px; height:180px; border:1px; class="img-circle"  alt="{{ object.docfile.name }}"/>		<hr/>
-                               
-		</div>
-
-<div class="col-xs-6">
-	    <a href="#" class="thumbnail">
- <img id="vin" src="{{ object.docfile.url }}"   style="width:330px; height:180px; border:1px; class="img-circle"  alt="{{ object.docfile.name }}"/>	
-	    </a>
-	  	</div>
-                        
-                        
-               
-
-                {% endif %}
-
-        </div>    
-	
+      <div class='col-md-7'>   
+             {% if object %}
+             <div class="container-fluid" style="height:auto; width: auto; color:grey; background-color: GhostWhite">
+				 <div class="container-fluid" style="height:auto; width: auto; color:#797980; margin-top:5px; background-color: white; margin-right:12px">
+	              <div class="col-sm-9">  				                      
+                              <h3 style="color:grey;"><lable>{{ object.title}}</lable></h3>                                                          
+		               </div>
+                  </div>    	
+                                              
+                          <img src="{{ object.docfile.url }}"  style="height:45%; width:98%; border:1px;" class="img-responsive"  alt="{{ object.docfile.name }}"/>		                             
+		               <br>  
+             </div>
+                    <div class="container-fluid" style="height:auto; width: auto; color:grey; background-color: GhostWhite ; margin-right:12px">
+                    <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">						
+						<h3><lable style="color:#434343">Description</lable></h3>
+                       <div class="col-sm-11">
+                         <h4 style="color:grey;"><lable>{{ object.description}}</lable></h4>
+                       </div> </div>
+                    </div>   
+             {% endif %}
+        </div>    	
     <!-- Product Sidebar --> 
-   
-       <div class='col-sm-8'>
-		<div class='col-sm-8 pull-left'>
-			 <h1><b>{{ object.title|upper }} </b>
-			 </h1>
-		 </div>
+   <div class='col-md-5'>   
+             {% if object %}                         	              
+					  <div class="col-sm-11">					   
+					   <div class="container-fluid" style="height:auto; width: auto; margin-top:5px; color:#797980;  background-color: white">
+                        <center><h3><lable>Details</lable></h3></center> 
+                      </div></div>
+                      <br>
+					  	<div class="col-sm-11">  
+					  <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">
+						  		             			 	                   
+			 	               <center><h4 style="color:grey;"><lable style="color:#434343">Post On  :</lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ object.date_created|date:"d M Y" }}</h4>  </center>     
+                                <center><h4 style="color:grey;"><lable style="color:#434343">Expire On:</lable>  &nbsp;&nbsp;&nbsp;  {{object.expire_date|date:"d M Y"}}</h4>  </center>    
+                               <center> <h4 style="color:grey;"><lable style="color:#434343">Remains: </lable>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ object.quantity }}&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>   </center> 
+                              <center>  <h4 style="color:grey;"><lable style="color:#434343">Location:</lable>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{ object.address }}</h4>         </center>                                    
+		               </div>                     
+                     </div>                    
+                    <div class="row">						
+					     <div class='col-md-3'>   	
+                            <br>
+                            <img id="img1" src="{% static 'assets/img/find_user.png' %}" class="img-circle" width="100%" height="90px" alt="your selected item"/>		                                  		            
+                         </div>	
+                         <div class='col-md-7' style="padding-top:10px">   	
+                                 <br>          
+                             <a href="/products/enquiry/{{ object.user}}/"style="color:#428BCA"> <div class='col-sm-11'><h3 style="color:grey;">{{ object.user}}<br/>
+                             </div></a>                
+		            
+                          </div>
+                   </div>
+  
+                  <div class="col-sm-11">
+					   <br>
+                         <a href="/products/enquiry/{{ object.user}}/" style="color:#428BCA"> <input type="submit" class='btn btn-primary btn-block'  value={% trans "Excahnge/Donate" %}&raquo;/></a>
+                  </div>
+                  
+                  
+                  <div class="col-sm-11">
+					   <br>
+					 <div class="container-fluid" style="height:auto; width: auto; color:#797980;  background-color: white">
+					   <center><h4 style="color:grey;"><lable>Share on Social Media </lable></h4></center>
+					   <center><div>
+					    <a href="//facebook.com"><img src="{% static 'assets/img/facebook.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//twitter.com"><img src="{% static 'assets/img/Twitter.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//in.linkedin.com"><img src="{% static 'assets/img/linkedin.png' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="//plus.google.com"><img src="{% static 'assets/img/google.jpg' %}" class="img-inline-responsive"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					   <br><br>
+                     </div></center></div>
+                  <br>
+                </div>
+                  
+         <div class="col-sm-11">					   				 
+		   
+     
+     </div>
+                  
+             {% endif %}
+        </div>        
+</div>
+</div>
+</div>
 
-		<div class='col-sm-4 pull-right'>
-
-			 	 <h4 class='btn btn-default btn-block'>ITEM REMAINS</h4>
-			 	<h6  class="form-control"><center>{{ object.quantity }}</center></h6>
-
-	 	</div>
-	 	<div class='col-sm-12'>
-			 <hr/><h3 style="color:grey;"><lable>Post On:{{ object.date_created|date:"d M Y" }}</lable></h3>
-       
-        <h3 style="color:grey;"><lable>Expire On:{{object.expire_date|date:"d M Y"}}</lable></h3>
-			
-	 	</div>
-			<a href="/products/enquiry/{{ object.user}}/"style="color:#428BCA"> <div class='col-sm-6'><h3 style="color:grey;">Donated By: {{ object.user}}<br/>
-<h6>*use this name for message or request.</h6><hr/></div></a>
-	 <div class='col-sm-6 pull-center'>
-			 	<br> <a href="/products/enquiry/{{ object.user}}/"style="color:#428BCA"><input type="submit" class="btn btn-info btn-lg"  value="{% trans "Excahnge/Donate" %}&raquo;"/></a>
-	 	</div></div>
- <div class='col-sm-8 pull-left'>
-			 	 
-<h3 style="color:grey;"><lable>{{ object.description}}</lable></h3>
-
-   	 	</div>
- </div>
-
-    </div>   
-
-<center><a href="{% url 'products' %}">
-                    <i class="fa fa-external-link">
-  <b><h4>BACK TO PRODUCT LIST</h4><b></i></a></center> </div>
-<div class="container-fluid" style="height:100px; width: auto; color:grey; background-color: PaleTurquoise"><br> 
-<h4>Related Project.......</h4><center></center>
-        
-    </div>
-
-
-<script>	
-     $("#vin").elevateZoom({scrollZoom : true});
-    </script>
 {% endblock %}
